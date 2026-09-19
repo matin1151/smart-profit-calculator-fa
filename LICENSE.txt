@@ -1,0 +1,15 @@
+Copyright (c) 2026 Matin. All rights reserved.
+
+PROPRIETARY SOFTWARE — NO LICENSE GRANTED
+
+This software and all source code, files, designs, interfaces, documentation, and other materials contained in this repository are proprietary and protected by applicable copyright laws.
+
+No permission is granted to copy, reproduce, modify, adapt, publish, distribute, sublicense, sell, resell, rent, lease, or create derivative works from this software or any substantial portion of it, except with prior written permission from the copyright holder.
+
+Commercial use, redistribution, resale, or incorporation of this software or its source code into another product or service is prohibited without prior written permission from the copyright holder.
+
+The repository may be publicly visible on GitHub for demonstration and development purposes. Public visibility does not grant a license or permission to use the code.
+
+For licensing inquiries or written permission, contact the copyright holder.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, TO THE EXTENT PERMITTED BY APPLICABLE LAW.

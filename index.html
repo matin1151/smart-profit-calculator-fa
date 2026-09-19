@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Smart Profit Calculator Pro — pricing, profit, comparison and monthly forecasting for small businesses.">
+<title>Smart Profit Calculator Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">SP</span><span>Smart Profit</span></div>
+  <span class="badge">PRO · Pricing Intelligence</span>
+</header>
+
+<main class="container">
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">SMALL BUSINESS PRICING TOOL</p>
+    <h1>Price smarter.<br><span>Grow with confidence.</span></h1>
+    <p>Calculate your real profit, find the right price, compare products and forecast monthly earnings — all in one place.</p>
+    <div class="hero-pills"><span>✓ Real costs</span><span>✓ Target pricing</span><span>✓ Monthly forecast</span><span>✓ Product comparison</span></div>
+  </div>
+  <div class="hero-orb"><div><b>PRO</b><small>Pricing<br>Intelligence</small></div></div>
+</section>
+
+<section class="card calculator">
+  <div class="section-head">
+    <div><span class="section-kicker">STEP 1</span><h2>Build your pricing model</h2><p>Change any number and every result updates instantly.</p></div>
+    <div class="head-actions"><button id="save" class="secondary">＋ Save</button><button id="reset" class="secondary">↻ Reset</button></div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span>01</span><div><h3>Product & sales</h3><small>What you sell and how much you sell</small></div></div>
+    <div class="grid">
+      <label>Product / service<input id="product" placeholder="e.g. Handmade candle"></label>
+      <label>Currency<select id="currency"><option value="$">$ USD</option><option value="€">€ EUR</option><option value="£">£ GBP</option><option value="﷼">﷼ IRR</option></select></label>
+      <label>Units sold / month<input id="units" type="number" min="1" step="1" value="100"></label>
+      <label>Selling price / unit<input id="selling" type="number" min="0" step="0.01" value="49"></label>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span>02</span><div><h3>Cost per unit</h3><small>Include the full direct cost of one sale</small></div></div>
+    <div class="grid">
+      <label>Purchase cost / unit<input id="purchase" type="number" min="0" step="0.01" value="20"></label>
+      <label>Shipping / unit<input id="shipping" type="number" min="0" step="0.01" value="5"></label>
+      <label>Packaging / unit<input id="packaging" type="number" min="0" step="0.01" value="2"></label>
+      <label>Labor / unit<input id="labor" type="number" min="0" step="0.01" value="3"></label>
+      <label>Other cost / unit<input id="other" type="number" min="0" step="0.01" value="1"></label>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-title"><span>03</span><div><h3>Fees, tax & adjustments</h3><small>Costs that can quietly eat into your margin</small></div></div>
+    <div class="grid">
+      <label>Platform fee %<input id="platformFee" type="number" min="0" max="100" step="0.1" value="8"></label>
+      <label>Payment fee %<input id="paymentFee" type="number" min="0" max="100" step="0.1" value="3"></label>
+      <label>Payment fixed fee / order<input id="fixedFee" type="number" min="0" step="0.01" value="0.30"></label>
+      <label>Advertising cost / order<input id="ads" type="number" min="0" step="0.01" value="2"></label>
+      <label>Tax / VAT %<input id="tax" type="number" min="0" max="100" step="0.1" value="5"></label>
+      <label>Discount %<input id="discount" type="number" min="0" max="100" step="0.1" value="0"></label>
+      <label>Target profit margin %<input id="targetMargin" type="number" min="0" max="99.9" step="0.1" value="30"></label>
+    </div>
+  </div>
+
+  <div class="results-wrap">
+    <div class="result-heading"><div><span class="section-kicker">STEP 2</span><h2>Your pricing decision</h2></div><span id="status" class="status positive">PROFITABLE</span></div>
+    <div class="hero-result"><div><span>Recommended selling price</span><small>Price needed to reach your target margin</small></div><strong id="recommended">$45.07</strong></div>
+    <div class="results">
+      <div class="metric"><span>True cost / unit</span><strong id="cost">$31.00</strong></div>
+      <div class="metric"><span>Net revenue / unit</span><strong id="netRevenue">$43.05</strong></div>
+      <div class="metric"><span>Net profit / unit</span><strong id="profit">$12.05</strong></div>
+      <div class="metric"><span>Profit margin</span><strong id="margin">28.00%</strong></div>
+      <div class="metric"><span>Markup</span><strong id="markup">38.87%</strong></div>
+      <div class="metric"><span>ROI</span><strong id="roi">38.87%</strong></div>
+      <div class="metric"><span>Break-even price</span><strong id="breakEven">$35.41</strong></div>
+      <div class="metric"><span>Break-even units</span><strong id="breakEvenUnits">1</strong></div>
+      <div class="metric"><span>Estimated monthly profit</span><strong id="totalProfit">$1,205.00</strong></div>
+    </div>
+    <div class="bar-label"><span>Current profit margin</span><b id="barValue">28.00%</b></div>
+    <div class="bar"><div id="profitBar"></div></div>
+    <div class="insight" id="message"></div>
+    <div class="summary"><h3>Monthly sales breakdown</h3><div class="summary-grid">
+      <div><span>Gross sales</span><b id="grossSales">$4,900.00</b></div>
+      <div><span>Fees & tax</span><b id="fees">$980.00</b></div>
+      <div><span>Tax / VAT</span><b id="taxAmount">$245.00</b></div>
+      <div><span>Total costs</span><b id="variableCosts">$3,695.00</b></div>
+    </div></div>
+    <div class="actions"><button id="copy" class="primary">Copy results</button><button id="pdf" class="secondary">Export / Save PDF</button><span id="copied" class="copied"></span></div>
+  </div>
+</section>
+
+<section class="card tool-card">
+  <div class="section-head compact"><div><span class="section-kicker">STEP 3</span><h2>Compare your products</h2><p>Save calculations above, then compare their economics side by side.</p></div></div>
+  <div id="savedEmpty" class="empty">No saved products yet. Click <b>＋ Save</b> after calculating a product.</div>
+  <div class="table-wrap"><table id="compareTable"><thead><tr><th>Product</th><th>Price</th><th>Cost</th><th>Profit / unit</th><th>Margin</th><th>Monthly profit</th><th></th></tr></thead><tbody></tbody></table></div>
+</section>
+
+
+<section class="card scenarios">
+  <div class="section-head compact"><div><span class="section-kicker">STEP 4</span><h2>Pricing scenarios</h2><p>See how different target margins translate into selling prices and profit.</p></div></div>
+  <div class="scenario-grid" id="scenarioGrid"></div>
+</section>
+
+<section class="card chart-card">
+  <div class="section-head compact"><div><span class="section-kicker">PRICE SENSITIVITY</span><h2>Profit vs. price</h2><p>Understand how your profit changes as you change the selling price.</p></div></div>
+  <div class="chart-wrap"><canvas id="profitChart" width="1000" height="360"></canvas></div>
+  <div class="chart-legend"><span><i></i> Net profit per unit</span><b id="chartRange"></b></div>
+</section>
+<section class="card forecast">
+  <div class="section-head compact"><div><span class="section-kicker">STEP 4</span><h2>Monthly profit forecast</h2><p>See how your current economics translate into monthly revenue and profit.</p></div></div>
+  <div class="forecast-grid">
+    <div class="forecast-card"><span>Monthly units</span><b id="fUnits">100</b></div>
+    <div class="forecast-card"><span>Monthly revenue</span><b id="fRevenue">$4,900</b></div>
+    <div class="forecast-card accent"><span>Monthly net profit</span><b id="fProfit">$1,205</b></div>
+    <div class="forecast-card"><span>Annualized profit</span><b id="fAnnual">$14,460</b></div>
+  </div>
+  <div class="forecast-bar"><div id="forecastFill"></div></div>
+  <div class="forecast-note">Forecast uses your current units sold, selling price, costs, fees, tax and discount assumptions.</div>
+</section>
+
+<section class="how"><div class="section-head compact"><div><span class="section-kicker">WHY IT MATTERS</span><h2>One dashboard for better pricing</h2><p>Understand the economics behind every product before you decide what to charge.</p></div></div>
+<div class="features"><div><span class="feature-icon one">01</span><b>True unit economics</b><p>See what one sale really costs after direct costs and selling expenses.</p></div>
+<div><span class="feature-icon two">02</span><b>Target-based pricing</b><p>Calculate the price required to reach the margin you want.</p></div>
+<div><span class="feature-icon three">03</span><b>Compare & forecast</b><p>Save products, compare profitability and estimate monthly earnings.</p></div></div></section>
+</main>
+<footer>Smart Profit Calculator Pro · Pricing intelligence for small businesses</footer>
+<script src="app.js"></script>
+</body>
+</html>
