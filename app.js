@@ -23,10 +23,21 @@ function calc(){
  const fees=platformFee+paymentFee+ads+tax,net=discounted-fees,profit=net-unitCost,margin=discounted>0?profit/discounted*100:0,markup=unitCost>0?profit/unitCost*100:0;
  const variableRate=platform+payment+taxRate,fixedOrder=fixed+ads,be=(unitCost+fixedOrder)/Math.max(.0001,(1-variableRate)*(1-discount));
  const targetDen=(1-variableRate)*(1-discount)-target,recommended=targetDen>0?(unitCost+fixedOrder)/targetDen:Infinity;
+
+ // شاخص‌های وابسته به قیمت پیشنهادی با تغییر «حاشیه سود هدف» دوباره محاسبه می‌شوند.
+ // سود، درآمد خالص و حاشیه سود فعلی همچنان بر اساس قیمت فروش فعلی باقی می‌مانند.
+ const recommendedModel=Number.isFinite(recommended)?modelFor(recommended):null;
+ const recommendedProfit=recommendedModel?recommendedModel.profit:0;
+ const recommendedMarkup=unitCost>0?recommendedProfit/unitCost*100:0;
+ const recommendedMonthlyProfit=recommendedProfit*units;
+
  const breakUnits=profit>0?Math.ceil(fixedOrder/Math.max(profit,0.0001)):0,monthlyProfit=profit*units,monthlyRevenue=discounted*units;
- $('cost').textContent=money(unitCost);$('netRevenue').textContent=money(net);$('profit').textContent=money(profit);$('margin').textContent=margin.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪';$('markup').textContent=markup.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪';$('roi').textContent=markup.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪';
+ $('cost').textContent=money(unitCost);$('netRevenue').textContent=money(net);$('profit').textContent=money(profit);$('margin').textContent=margin.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪';
+ $('markup').textContent=Number.isFinite(recommended)?recommendedMarkup.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪':'—';
+ $('roi').textContent=Number.isFinite(recommended)?recommendedMarkup.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪':'—';
  $('breakEven').textContent=money(be);$('breakEvenUnits').textContent=breakUnits?breakUnits.toLocaleString('fa-IR'):'—';$('recommended').textContent=Number.isFinite(recommended)?money(recommended):'قابل محاسبه نیست';
- $('totalProfit').textContent=money(monthlyProfit);$('grossSales').textContent=money(monthlyRevenue);$('fees').textContent=money(fees*units);$('taxAmount').textContent=money(tax*units);$('variableCosts').textContent=money((unitCost+fees)*units);
+ $('totalProfit').textContent=Number.isFinite(recommended)?money(recommendedMonthlyProfit):'قابل محاسبه نیست';
+ $('grossSales').textContent=money(monthlyRevenue);$('fees').textContent=money(fees*units);$('taxAmount').textContent=money(tax*units);$('variableCosts').textContent=money((unitCost+fees)*units);
  $('barValue').textContent=margin.toLocaleString('fa-IR',{minimumFractionDigits:2,maximumFractionDigits:2})+'٪';$('profitBar').style.width=Math.max(0,Math.min(100,margin))+'%';
  const st=$('status');
  if(profit<0){st.textContent='زیان‌ده';st.className='status negative';$('message').textContent='در این قیمت ضرر می‌کنید. قیمت را افزایش دهید یا هزینه‌ها را کاهش دهید.'}
